@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  angular:
+    hostname: localhost
+    build: angular-app
+    ports:
+      - 8181:80
+
+  express:
+    build: express-server
+    ports:
+      - '3000:3000'
+    links:
+      - "database"
+
+  database:
+    image: mongo
+    ports:
+      - 27017:27017
+
